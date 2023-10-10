@@ -13,6 +13,7 @@ public interface WorkMapper {
 	public int updateWork(WorkDTO params);
 	public List<WorkDTO> selectWorkList(WorkDTO params);
 	public List<WorkDTO> selectWorkList2(WorkDTO params);
+	public List<WorkDTO> selectWorkList3(WorkDTO params);
 	
 	public int selectWorkTotalCount(WorkDTO params);
 	

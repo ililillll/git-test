@@ -3,26 +3,26 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="project/layout/basic">
 
-<th:block layout:fragment="content">
-<!-- 권한 확인 -->
+  <th:block layout:fragment="content">
+  <!-- 권한 확인 -->
 			<div class="box">근태관리</div>
 	  <div class="box2">
 			<div class="title2">근태관리</div>
-		
-		<div class="search" >
-			<form id="search-form">
-				<select name="serch" id="select">
-					<option value="no">직원번호</option>
-					<option value="name">이름</option>
-					<option value="date">근무일</option>
-					<option value="or">기타</option>
-				</select>
-				<input type = "text" id="serch-board" placeholder="검색어를 입력하세요"/>
-				<input type = "submit" value="검색"/>
-			</form>
+
+	   <div class="search" >
+		<form id="searchForm" th:action="@{/ES}">
+			<select name="searchType" id="select">
+				<option value="" th:selected="${#strings.isEmpty( params.searchType )}">전체</option>
+				<option value="no" th:selected="${#strings.equals( params.searchType, 'no' )}">직원번호</option>
+				<option value="name" th:selected="${#strings.equals( params.searchType, 'name' )}">이름</option>
+				<option value="work" th:selected="${#strings.equals( params.searchType, 'work' )}">근무일</option>
+			</select>
+			<input type="text" name="searchKeyword" placeholder="검색어를 입력하세요" th:value="${params.searchKeyword}" />
+			<input type="submit" value="검색"/>
+		  </form>
 		</div>
-	
-	  <table>
+  	
+  	  <table>
         <thead>
           <tr>
             <th>no</th>
@@ -57,17 +57,20 @@
 		<input type="text" id="jumin" th:field="*{jumin}" placeholder="주민등록번호"/>
 		<input type="submit">
 	  </form>
+	 </div>
 	
-	  </div>
-	
-</th:block>
+  </th:block>
 
-<th:block layout:fragment="script">
+  <th:block layout:fragment="script">
 	<script th:inline="javascript">
 	/*<![CDATA[*/
 		
+	function aa(){
+		alert("test");
+	}	
+		
 	/*]]>*/
 	</script>
-</th:block>
+  </th:block>
 
 </html>

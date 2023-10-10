@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.board.domain.WorkDTO;
 import com.board.mapper.WorkMapper;
+import com.board.paging.PaginationInfo;
 
 @Service
 @Transactional
@@ -38,16 +39,24 @@ public class WorkServiceImpl implements WorkService {
   @Override
   public List<WorkDTO> getWorkList(WorkDTO params) { //관리자
     List<WorkDTO> workList = Collections.emptyList();
-    workList = wm.selectWorkList(params);
+    int workTotalCount = wm.selectWorkTotalCount(params);
+    
+    PaginationInfo paginationInfo = new PaginationInfo(params);
+    paginationInfo.setTotalRecordCount(workTotalCount);
+   
+    params.setPaginationInfo(paginationInfo);
+
+    if (workTotalCount > 0) {
+      workList = wm.selectWorkList3(params);
+    }
     return workList;
   }
-  @Override
-  public List<WorkDTO> getWorkList2(WorkDTO params) { //사용자
-	  List<WorkDTO> workList = Collections.emptyList();
-	  workList = wm.selectWorkList2(params);
-	  return workList;
-  }
-
+//  @Override
+//  public List<WorkDTO> getWorkList2(WorkDTO params) { //사용자
+//	  List<WorkDTO> workList = Collections.emptyList();
+//	  workList = wm.selectWorkList2(params);
+//	  return workList;
+//  }
 	@Override
 	public boolean selectEmployee(WorkDTO params) {
 		WorkDTO result = wm.selectEmployee(params);

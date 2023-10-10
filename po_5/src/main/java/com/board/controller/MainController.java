@@ -32,7 +32,10 @@ public class MainController {
 	  return "project/공통/메인";
   }
   @GetMapping("/myInfo") 
-  public String myInfo(){
+  public String myInfo(Model model, HttpSession session){
+	  UserDTO loggedInUser = (UserDTO)session.getAttribute("loggedInUser");
+	  model.addAttribute("user", loggedInUser);
+	
 	  return "project/공통/내정보";
   }
   
@@ -44,33 +47,6 @@ public class MainController {
   @GetMapping("/write") 
   public String write(){
 	  return "project/공통/게시글작성";
-  }
-  
-//  Work--------------------------------------------------------------------  
-  @Autowired
-  private WorkService workService;
-  
-  @GetMapping("/ES")
-  public String openWorkList(@ModelAttribute("params") WorkDTO params, Model model, HttpSession session) {
-//    UserDTO loggedInUser = (UserDTO)session.getAttribute("loggedInUser");
-//    if(loggedInUser.getNickname()=="4번직원") {value=true;} else {value=false;}
-	
-	value=true;// 권한이 없다면 직원번호를 전달하여야 함...
-    List<WorkDTO> workList;
-    if(value) { workList = workService.getWorkList(params);
-    } else 	  {	workList = workService.getWorkList2(params);}
-    
-    model.addAttribute("workList", workList);
-    return "project/공통/출퇴근";
-  }
-  @PostMapping("/ES/add")//추가 클릭시
-  public String registerWork(@ModelAttribute("params") final WorkDTO params, Model model) {
-    try {
-      workService.registerWork(params);
-    } catch (DataAccessException e) {
-    } catch (Exception e) {
-    }
-    return "redirect:/ES";
   }
   
 //  Employee--------------------------------------------------------------------  

@@ -2,13 +2,11 @@ package com.board.domain;
 
 import java.time.LocalDateTime;
 
-import com.board.paging.Criteria;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class WorkDTO extends Criteria {
+public class WorkDTO extends CommonDTO {
 	private int num;
 	private int no;
 	private String name;
@@ -17,6 +15,4 @@ public class WorkDTO extends Criteria {
 	private LocalDateTime workOn;
 	private LocalDateTime workOff;
 	private String workTime;
-	
-
 }
