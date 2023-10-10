@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<body th:fragment="main-body">
+
+<div id="header">
+	<div class="main">Web.</div>
+	
+	<div th:if="${user} == null">
+        <button onclick="signUp()">Sign up</button>
+		<button onclick="login()" class="btn">Login</button>
+    </div>
+    <div th:unless="${user} == null">
+        <button onclick="logout()">Logout</button>
+    </div>
+	
+</div>
+<div id="navigation">
+	<!-- 로그인된 경우 관리자권한 확인 -->
+	<div th:if="${user} == null">
+		<ul>
+			<li><a th:href="|@{/main}|">홈</a></li>
+		</ul>
+		</div>
+	<div th:unless="${user} == null">
+		<div th:if="${user.nickname} == 4번직원">
+	      <ul>
+	        <li><a th:href="|@{/main}|">홈</a></li>
+			<li><a th:href="|@{/myInfo}|">내정보</a></li>
+			<li><a th:href="|@{/board}|">게시판</a></li>
+			<li><a th:href="|@{/ES}|">근태관리</a></li>
+			<li><a th:href="|@{/HRM}|">인사관리</a></li>
+			</ul>	
+			</div>
+		<div th:unless="${user.nickname} == 4번직원">
+		  <ul>
+			<li><a th:href="|@{/main}|">홈</a></li>
+			<li><a th:href="|@{/myInfo}|">내정보</a></li>
+			<li><a th:href="|@{/board}|">게시판</a></li>
+			<li><a th:href="|@{/ES}|">근무현황조회</a></li>
+		 	</ul>
+			</div>
+	</div>
+</div>
+
+	<th:block layout:fragment="content">
+		<div class="box"></div>
+		<div class="box2"></div>
+	</th:block>
+
+	<div class="footer">
+	footer...
+	</div>
+
+	<script th:src="@{/script/main.js}"></script>
+	<th:block layout:fragment="script"></th:block>
+
+</body>

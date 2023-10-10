@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="project/layout/basic">
+<th:block layout:fragment="content">
+		<div class="box">직원 추가</div>
+	<div class="box2">
+		<div class="box-title">직원 추가</div>
+	<div class="box2-inbox">
+	<div class="join-wrapper">
+	
+		<form method="post" th:action="@{/member/save}" id="HRMadd-form">
+			<input type="text" name="name" placeholder="name"/>
+			<input type="text" name="jumin" placeholder="jumin"/>
+			<input type="text" name="tel" placeholder="tel"/>
+			<input type="text" name="email" placeholder="email"/>
+			<input type="text" name="jikup" placeholder="jikup"/>
+			<input type="text" name="depNo" placeholder="depNo"/>
+			<input type="text" name="adminpw" placeholder="adminpw"/>
+			<input type="submit" value="add"/>
+		</form>
+				
+	</div><!-- join-wrapper -->
+	</div><!-- box2_inbox -->
+	</div><!-- box2 -->
+</th:block>
+</html>
+			

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="project/layout/basic">
+<th:block layout:fragment="content">
+		<div class="box">회원가입 페이지</div>
+	<div class="box2">
+		<div class="box-title">Sign up</div>
+	<div class="box2-inbox">
+		<div class="signUp">
+		<form method="post" th:action="@{/signUp}" th:object="${user}">
+			<input type="text" th:field="*{employeeNo}" placeholder="employee number"/>
+			<input type="text" th:field="*{nickname}" placeholder="new nickname"/>
+			<input type="password" th:field="*{pw}" placeholder="new password" />
+			<input type="password" th:field="*{pw2}" placeholder="confirm password" />
+			<fieldset>
+				<legend>약관동의</legend>
+				<label>
+					<input type="checkbox" name="agreeProv" value="y">
+					서비스 약관에 동의합니다.</label>
+			</fieldset>
+			<input type="submit" value="Sign up" onsubmit="return passConfirm(this)"/>
+		</form>
+		</div>
+		
+	</div><!-- box2_inbox -->
+	</div><!-- box2 -->
+</th:block>
+
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+
+    function passConfirm(form) {
+    	  boolean result = (form.pw.value).equlse(form.pw2.value) ? True : False;
+
+        if( result ) {
+          alert("비밀번호가 일치합니다");
+          return true;
+        } else{
+          alert("비밀번호가 일치 하지 않습니다");
+          return false;
+        }
+        
+      /*]]>*/
+    </script>
+  </th:block>
+
+
+</html>
+			

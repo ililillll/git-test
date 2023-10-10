@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="project/layout/basic">
+
+<th:block layout:fragment="content">
+	<div class="box">인사관리</div>
+	<div class="box2">
+	<div class="title2">인사관리</div>
+	
+	<button class="add" onclick="add()">직원추가</button>
+	
+	<div class="search" >
+		<form id="search-form">
+			<select name="serch" id="select">
+				<option value="no">직원번호</option>
+				<option value="name">이름</option>
+				<option value="dep">부서</option>
+				<option value="jikup">직급</option>
+				<option value="or">기타</option>
+			</select>
+			<input type = "text" id="serch-board" placeholder="검색어를 입력하세요"/>
+			<input type = "submit" value="검색"/>
+		</form>
+	</div>
+	
+	
+	<table>
+        <thead>
+          <tr>
+            <th>직원번호</th>
+            <th>이름</th>
+            <th>부서</th>
+            <th>직급</th>
+            <th class="td-m">이메일</th>
+            <th class="td-m">전화번호</th>
+            <th class="td-m">주민번호</th>
+            <th class="td-s">-</th>
+          </tr>
+        </thead>
+		<tbody>
+          <tr th:if="${not #lists.isEmpty( employeeList )}" th:each="row : ${employeeList}">
+            <td>??</td>
+            <td>??</td>
+            <td>??</td>
+            <td>??</td>
+            <td>??</td>
+            <td>??</td>
+            <td>??</td>
+            <td>
+            	<a th:href="|@{/project/join}">수정</a>
+            </td>
+          </tr>
+          <tr th:unless="${not #lists.isEmpty( boardList )}">
+            <td colspan="8">조회된 결과가 없습니다.</td>
+          </tr>
+        </tbody>
+	</table>
+
+	</div>
+</th:block>
+	
+  <th:block layout:fragment="script">
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+
+      function add() { // 직원추가
+        location.href = "/HRM1"
+      }
+      function open(uri, queryString) { // x
+        location.href = uri + queryString;
+      }
+        
+      /*]]>*/
+    </script>
+  </th:block>
+  
+</html>

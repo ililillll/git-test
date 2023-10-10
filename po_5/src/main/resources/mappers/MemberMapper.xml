@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mapper.MemberMapper">
+  	
+  	<select id="allMember" resultType="com.board.domain.MemberDTO">
+   		SELECT * FROM employee 
+  	</select>
+  	
+	<insert id="insertDept">
+		insert into dept ( dep_no, dep_name, jikup )
+		values ( #{depNo}, #{depName}, #{jikup})
+	</insert>
+  
+	<sql id="memberColumns">
+		  no
+		, name
+		, jumin_num
+		, tel_num
+		, email
+		, dep_no
+	</sql>
+	
+	<insert id="insertMember" parameterType="MemberDTO">
+		INSERT INTO employee (
+			<include refid="memberColumns" />
+		) VALUES (
+			  seq_employee_no.nextval
+			, #{name}
+			, #{juminNum}
+			, #{telNum}
+			, #{email}
+			, #{depNo}
+		)
+	</insert>
+	
+	<select id="selectMemberDetail" parameterType="long" resultType="MemberDTO">
+		SELECT
+			<include refid="memberColumns" />
+		FROM
+			employee
+		AND
+			no = #{no}
+	</select>
+
+	<update id="updateMember" parameterType="MemberDTO">
+		UPDATE employee
+		SET
+			  name    = #{name}
+			, tel_num = #{telNum}
+			, email   = #{email}
+			, dep_no  = #{depNo}
+		WHERE
+			no = #{no}
+	</update>
+<!-- 
+	<update id="deleteMember" parameterType="long">
+		UPDATE member
+		SET
+			  delete_yn = 'Y'
+			, delete_time = SYSDATE
+		WHERE
+			no = #{no}
+	</update>
+-->
+  
+	
+</mapper>
