@@ -26,7 +26,7 @@
 			        		  			    AND e.jumin_num = #{jumin}))
 	</update>
 	
-	<select id="selectEmployee" resultType="WorkDTO">
+	<select id="selectEmp" resultType="WorkDTO">
 	SELECT NO 
     FROM EMPLOYEE e
 	WHERE e.name = #{name} 

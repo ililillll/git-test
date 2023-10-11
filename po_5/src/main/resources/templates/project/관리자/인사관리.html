@@ -11,7 +11,7 @@
 	<button class="add" onclick="add()">직원추가</button>
 	
 	<div class="search" >
-		<form id="search-form">
+		<form id="searchForm">
 			<select name="serch" id="select">
 				<option value="no">직원번호</option>
 				<option value="name">이름</option>
@@ -28,34 +28,46 @@
 	<table>
         <thead>
           <tr>
+            <th>idx</th>
             <th>직원번호</th>
             <th>이름</th>
+            <th>주민번호</th>
+            <th>전화번호</th>
+            <th>이메일</th>
             <th>부서</th>
             <th>직급</th>
-            <th class="td-m">이메일</th>
-            <th class="td-m">전화번호</th>
-            <th class="td-m">주민번호</th>
-            <th class="td-s">-</th>
+            <th>-</th>
           </tr>
         </thead>
 		<tbody>
-          <tr th:if="${not #lists.isEmpty( employeeList )}" th:each="row : ${employeeList}">
-            <td>??</td>
-            <td>??</td>
-            <td>??</td>
-            <td>??</td>
-            <td>??</td>
-            <td>??</td>
-            <td>??</td>
-            <td>
-            	<a th:href="|@{/project/join}">수정</a>
-            </td>
+		   <tr th:if="${not #lists.isEmpty( employeeList )}" th:each="row : ${employeeList}">
+            <td scope="row" th:text="${row.idx}"></td>
+            <td th:text="${row.no}"></td>
+            <td th:text="${row.name}"></td>
+            <td th:text="${row.juminNum}"></td>
+            <td th:text="${row.telNum}"></td>
+            <td th:text="${row.email}"></td>
+            <td th:text="${row.depName}"></td>
+            <td th:text="${row.jikup}"></td>
+            <td>-</td>
           </tr>
-          <tr th:unless="${not #lists.isEmpty( boardList )}">
-            <td colspan="8">조회된 결과가 없습니다.</td>
+          <tr th:unless="${not #lists.isEmpty( employeeList )}">
+            <td colspan="9">조회된 결과가 없습니다.</td>
           </tr>
         </tbody>
 	</table>
+
+	<form method="post" th:action="@{/employee/add}" th:object="${employee}">
+			<input type="text" th:field="*{name}" placeholder="name"/>
+			<input type="text" th:field="*{juminNum}" placeholder="jumin"/>
+			<input type="text" th:field="*{telNum}" placeholder="tel"/>
+			<input type="text" th:field="*{email}" placeholder="email"/>
+			<input type="text" th:field="*{jikup}" placeholder="jikup"/>
+			<input type="text" th:field="*{depNo}" placeholder="depNo"/>
+			<input type="text" th:field="*{adminpw}" placeholder="adminpw"/>
+			<input type="submit"/>
+		</form>
+
 
 	</div>
 </th:block>
@@ -65,7 +77,7 @@
       /*<![CDATA[*/
 
       function add() { // 직원추가
-        location.href = "/HRM1"
+        location.href = "/employee/add"
       }
       function open(uri, queryString) { // x
         location.href = uri + queryString;

@@ -8,7 +8,7 @@
 		<div class="box-title">Sign up</div>
 	<div class="box2-inbox">
 		<div class="signUp">
-		<form method="post" th:action="@{/signUp}" th:object="${user}">
+		<form method="post" th:action="@{/signUp}" th:object="${user}" onsubmit="return passConfirm(this)">
 			<input type="text" th:field="*{employeeNo}" placeholder="employee number"/>
 			<input type="text" th:field="*{nickname}" placeholder="new nickname"/>
 			<input type="password" th:field="*{pw}" placeholder="new password" />
@@ -19,7 +19,7 @@
 					<input type="checkbox" name="agreeProv" value="y">
 					서비스 약관에 동의합니다.</label>
 			</fieldset>
-			<input type="submit" value="Sign up" onsubmit="return passConfirm(this)"/>
+			<input type="submit" value="Sign up"/>
 		</form>
 		</div>
 		

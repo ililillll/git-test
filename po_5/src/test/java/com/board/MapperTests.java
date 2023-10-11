@@ -7,16 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.board.domain.DeptDTO;
-import com.board.domain.MemberDTO;
+import com.board.domain.EmployeeDTO;
 import com.board.domain.WorkDTO;
-import com.board.mapper.MemberMapper;
+import com.board.mapper.EmployeeMapper;
 import com.board.mapper.WorkMapper;
 
 @SpringBootTest
 class MapperTests {
 
   @Autowired
-  private MemberMapper mm;
+  private EmployeeMapper em;
 
   @Test
   public void testDept() {
@@ -25,17 +25,30 @@ class MapperTests {
 	  params.setDepName("테스트");
 	  params.setJikup("테스트");
 	  
-	  mm.insertDept(params);
+	  em.insertDept(params);
   }
+  
+  @Test
+  public void selectEmployee() {
+	  EmployeeDTO params = new EmployeeDTO();
+	  em.selectEmployeeList(params);
+  }
+  
+  @Test
+  public void selectEmployee2() {
+	  EmployeeDTO params = new EmployeeDTO();
+	  List<EmployeeDTO> dto = em.selectEmployeeList(params);
+  }
+  
   @Test
   public void testEmployee() {
-	  MemberDTO params = new MemberDTO();
-	  params.setDepNo(3);
+	  EmployeeDTO params = new EmployeeDTO();
+	  params.setDep("test");
 	  params.setName("test");
-	  params.setJuminNum("000000000000");
-	  params.setTelNum("0000000000000");
+	  params.setJumin("000000000000");
+	  params.setTel("0000000000000");
 	  params.setEmail("abc@korea.com");
-	  mm.insertMember(params);
+	  em.insertEmployee(params);
   }
   
   
@@ -48,7 +61,7 @@ class MapperTests {
 	  WorkDTO params = new WorkDTO();
 	  params.setName("홍길동");
 	  params.setJumin("1234567890123");
-	  wm.selectEmployee(params);
+	  wm.selectEmp(params);
   }
   
   @Test

@@ -10,7 +10,7 @@
 	<div class="login-wrapper">
 	
 	<div class="login">
-		<form method="post" th:action="@{/login}"  th:object="${user}">
+		<form method="post" th:action="@{/login}"  th:object="${user}" onsubmit="return login(this)">
 				<input type="text" th:field="*{nickname}" placeholder="nickname" value="ud"/>
 			<input type="password" th:field="*{pw}" placeholder="password" />
 			<label>
@@ -29,8 +29,9 @@
     <script th:inline="javascript">
       /*<![CDATA[*/
 
-      function login() { // 로그인
-        
+      function login(form) { // 로그인
+        alert(form.nickname.value);
+      return;
       }
       
         

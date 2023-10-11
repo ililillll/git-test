@@ -17,6 +17,6 @@ public interface WorkMapper {
 	
 	public int selectWorkTotalCount(WorkDTO params);
 	
-	public WorkDTO selectEmployee(WorkDTO params);
+	public WorkDTO selectEmp(WorkDTO params);
 }
 

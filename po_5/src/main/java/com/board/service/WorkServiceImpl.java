@@ -21,7 +21,7 @@ public class WorkServiceImpl implements WorkService {
   @Override
   public boolean registerWork(WorkDTO params) {
 	  int queryResult = 0;
-	  if (wm.selectEmployee(params)==null) {return false;}
+	  if (wm.selectEmp(params)==null) {return false;}
 	  
 	  WorkDTO result = wm.selectWork(params);
 	  
@@ -58,8 +58,8 @@ public class WorkServiceImpl implements WorkService {
 //	  return workList;
 //  }
 	@Override
-	public boolean selectEmployee(WorkDTO params) {
-		WorkDTO result = wm.selectEmployee(params);
+	public boolean selectEmp(WorkDTO params) {
+		WorkDTO result = wm.selectEmp(params);
 		
 		if(result == null) {return false;}
 		else {return true;}

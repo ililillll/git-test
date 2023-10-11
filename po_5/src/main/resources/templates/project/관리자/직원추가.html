@@ -9,15 +9,15 @@
 	<div class="box2-inbox">
 	<div class="join-wrapper">
 	
-		<form method="post" th:action="@{/member/save}" id="HRMadd-form">
-			<input type="text" name="name" placeholder="name"/>
-			<input type="text" name="jumin" placeholder="jumin"/>
-			<input type="text" name="tel" placeholder="tel"/>
-			<input type="text" name="email" placeholder="email"/>
-			<input type="text" name="jikup" placeholder="jikup"/>
-			<input type="text" name="depNo" placeholder="depNo"/>
-			<input type="text" name="adminpw" placeholder="adminpw"/>
-			<input type="submit" value="add"/>
+		<form method="post" th:action="@{/employee/add}" th:object="${employee}">
+			<input type="text" th:field="*{name}" placeholder="name"/>
+			<input type="text" th:field="*{juminNum}" placeholder="jumin"/>
+			<input type="text" th:field="*{telNum}" placeholder="tel"/>
+			<input type="text" th:field="*{email}" placeholder="email"/>
+			<input type="text" th:field="*{jikup}" placeholder="jikup"/>
+			<input type="text" th:field="*{depNo}" placeholder="depNo"/>
+			<input type="text" th:field="*{adminpw}" placeholder="adminpw"/>
+			<input type="submit"/>
 		</form>
 				
 	</div><!-- join-wrapper -->
