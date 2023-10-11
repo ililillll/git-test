@@ -28,7 +28,7 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/employee/add")
-	public String employeeAdd() {
+	public String employee(@ModelAttribute("employee") final EmployeeDTO employee, Model model) {
 		return "project/관리자/직원추가";
 	}
 	

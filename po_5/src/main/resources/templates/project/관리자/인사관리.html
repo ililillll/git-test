@@ -57,18 +57,6 @@
         </tbody>
 	</table>
 
-	<form method="post" th:action="@{/employee/add}" th:object="${employee}">
-			<input type="text" th:field="*{name}" placeholder="name"/>
-			<input type="text" th:field="*{juminNum}" placeholder="jumin"/>
-			<input type="text" th:field="*{telNum}" placeholder="tel"/>
-			<input type="text" th:field="*{email}" placeholder="email"/>
-			<input type="text" th:field="*{jikup}" placeholder="jikup"/>
-			<input type="text" th:field="*{depNo}" placeholder="depNo"/>
-			<input type="text" th:field="*{adminpw}" placeholder="adminpw"/>
-			<input type="submit"/>
-		</form>
-
-
 	</div>
 </th:block>
 	
@@ -77,7 +65,10 @@
       /*<![CDATA[*/
 
       function add() { // 직원추가
-        location.href = "/employee/add"
+    	ㅍㅁㄱ ㅕ기 = "/employee/add"
+    	  
+    	  
+        window.open(url,"직원추가");
       }
       function open(uri, queryString) { // x
         location.href = uri + queryString;

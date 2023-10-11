@@ -43,10 +43,10 @@ class MapperTests {
   @Test
   public void testEmployee() {
 	  EmployeeDTO params = new EmployeeDTO();
-	  params.setDep("test");
+	  params.setDepName("test");
 	  params.setName("test");
-	  params.setJumin("000000000000");
-	  params.setTel("0000000000000");
+	  params.setJuminNum("000000000000");
+	  params.setTelNum("0000000000000");
 	  params.setEmail("abc@korea.com");
 	  em.insertEmployee(params);
   }
